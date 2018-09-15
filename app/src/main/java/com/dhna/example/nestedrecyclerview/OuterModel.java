@@ -7,9 +7,9 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class MainModel {
+public class OuterModel {
 
     private String title;
 
-    private List<SubModel> subModels;
+    private List<InnerModel> innerModels;
 }

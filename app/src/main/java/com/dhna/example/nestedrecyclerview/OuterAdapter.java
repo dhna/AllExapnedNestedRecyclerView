@@ -15,15 +15,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Getter;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+public class OuterAdapter extends RecyclerView.Adapter<OuterAdapter.ViewHolder> {
 
-    private List<MainModel> items;
+    private List<OuterModel> items;
 
-    public MainAdapter() {
+    public OuterAdapter() {
         items = new ArrayList<>();
     }
 
-    public void setItems(List<MainModel> items) {
+    public void setItems(List<OuterModel> items) {
         this.items.clear();
         this.items.addAll(items);
     }
@@ -32,19 +32,19 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_main, parent, false);
+                .inflate(R.layout.item_outer, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("TEST_LOG", "MainAdapter.onBindViewHolder(), position: " + position);
-        MainModel model = items.get(position);
+        Log.d("TEST_LOG", "OuterAdapter.onBindViewHolder(), position: " + position);
+        OuterModel model = items.get(position);
 
         holder.titleTextView.setText(model.getTitle());
 
-        holder.subAdapter.setItems(model.getSubModels());
-        holder.subAdapter.notifyDataSetChanged();
+        holder.innerAdapter.setItems(model.getInnerModels());
+        holder.innerAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -58,18 +58,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         @BindView(R.id.titleTextView)
         TextView titleTextView;
 
-        @BindView(R.id.subRecyclerView)
-        RecyclerView subRecyclerView;
+        @BindView(R.id.innerRecyclerView)
+        RecyclerView innerRecyclerView;
 
         @Getter
-        private final SubAdapter subAdapter;
+        private final InnerAdapter innerAdapter;
 
         ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            subAdapter = new SubAdapter();
-            subRecyclerView.setAdapter(subAdapter);
+            innerAdapter = new InnerAdapter();
+            innerRecyclerView.setAdapter(innerAdapter);
         }
     }
 }

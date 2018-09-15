@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.outerRecyclerView)
     RecyclerView outerRecyclerView;
 
-    private MainAdapter mainAdapter;
+    private OuterAdapter outerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,40 +25,40 @@ public class MainActivity extends AppCompatActivity {
 
         initOuterRecyclerView();
 
-        mainAdapter.setItems(Arrays.asList(
-                MainModel.builder()
+        outerAdapter.setItems(Arrays.asList(
+                OuterModel.builder()
                         .title("RecyclerView Example")
                         .build(),
-                MainModel.builder()
+                OuterModel.builder()
                         .title("Display all items into RecyclerView")
-                        .subModels(Arrays.asList(
-                                SubModel.builder()
+                        .innerModels(Arrays.asList(
+                                InnerModel.builder()
                                         .name("윤효정")
                                         .build(),
-                                SubModel.builder()
+                                InnerModel.builder()
                                         .name("나동호")
                                         .build(),
-                                SubModel.builder()
+                                InnerModel.builder()
                                         .name("이현주")
                                         .build(),
-                                SubModel.builder()
+                                InnerModel.builder()
                                         .name("홍준명")
                                         .build(),
-                                SubModel.builder()
+                                InnerModel.builder()
                                         .name("박준선")
                                         .build(),
-                                SubModel.builder()
+                                InnerModel.builder()
                                         .name("이민형")
                                         .build()))
                         .build(),
-                MainModel.builder()
+                OuterModel.builder()
                         .title("-------------- End --------------")
                         .build()));
     }
 
     private void initOuterRecyclerView() {
-        mainAdapter = new MainAdapter();
+        outerAdapter = new OuterAdapter();
 
-        outerRecyclerView.setAdapter(mainAdapter);
+        outerRecyclerView.setAdapter(outerAdapter);
     }
 }

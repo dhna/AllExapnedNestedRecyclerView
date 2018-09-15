@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class SubModel {
+public class InnerModel {
 
     private String name;
 }

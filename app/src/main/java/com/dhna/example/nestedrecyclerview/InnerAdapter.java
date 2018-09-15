@@ -17,36 +17,36 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SubAdapter extends RecyclerView.Adapter<SubAdapter.ViewHolder> {
+public class InnerAdapter extends RecyclerView.Adapter<InnerAdapter.ViewHolder> {
 
-    private List<SubModel> items;
+    private List<InnerModel> items;
 
-    public SubAdapter() {
+    public InnerAdapter() {
         items = new ArrayList<>();
     }
 
-    public void setItems(List<SubModel> items) {
+    public void setItems(List<InnerModel> items) {
         this.items.clear();
-        this.items.addAll(MoreObjects.firstNonNull(items, ImmutableList.<SubModel>of()));
+        this.items.addAll(MoreObjects.firstNonNull(items, ImmutableList.<InnerModel>of()));
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_sub, parent, false);
+                .inflate(R.layout.item_inner, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("TEST_LOG", "SubAdapter.onBindViewHolder(), position: " + position);
-        SubModel model = items.get(position);
+        Log.d("TEST_LOG", "InnerAdapter.onBindViewHolder(), position: " + position);
+        InnerModel model = items.get(position);
 
         setName(holder, model);
     }
 
-    private void setName(@NonNull ViewHolder holder, SubModel model) {
+    private void setName(@NonNull ViewHolder holder, InnerModel model) {
         holder.nameTextView.setText(model.getName());
     }
 
